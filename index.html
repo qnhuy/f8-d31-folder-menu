@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folder Menu</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png"
+        type="image/x-icon">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- pictogrammers -->
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <input type="text" class="search-box" placeholder="Search here!">
+        </header>
+
+        <div class="body">
+            <ul class="side-bar">
+                <li class="side-bar-option">
+                    <i class="side-bar-option__icon fa-solid fa-file"></i>
+                </li>
+            </ul>
+
+            <div class="workspace">
+                <div class="workspace-title">
+                    <p>WORKSPACE</p>
+                </div>
+            </div>
+
+            <textarea name="" id="main-screen" class="main-screen"></textarea>
+        </div>
+    </div>
+
+    <div class="context-menu" hidden>
+        <div class="context-menu__item context-menu--rename">Rename</div>
+        <div class="context-menu__item context-menu--delete">Delete</div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
