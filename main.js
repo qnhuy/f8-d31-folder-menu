@@ -238,10 +238,15 @@ function getFolderDropDown(fileType) {
 }
 
 //render menu folder
-function renderMenuFolder(tree, parentElement) {
+function renderMenuFolder(tree, parentElement, level) {
     for (node of tree) {
         const childElement = document.createElement('div')
-        childElement.className = 'menu-folder__item'
+        childElement.className = `menu-folder__item`
+
+        //hide all items having level > 0
+        if (level > 0) {
+            childElement.hidden = true
+        }
 
         childElement.innerHTML = `
             <div class="menu-folder__info">
@@ -252,11 +257,11 @@ function renderMenuFolder(tree, parentElement) {
 
         parentElement.appendChild(childElement)
         if (node.child) {
-            renderMenuFolder(node.child, childElement)
+            renderMenuFolder(node.child, childElement, level + 1)
         }
     }
 }
-renderMenuFolder(tree, menuFolder)
+renderMenuFolder(tree, menuFolder, 0)
 
 //append menu folder to workspcace
 workspace.appendChild(menuFolder)
