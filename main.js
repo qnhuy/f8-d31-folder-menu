@@ -257,8 +257,13 @@ function renderMenuFolder(tree, parentElement) {
     }
 }
 renderMenuFolder(tree, menuFolder)
+
 //append menu folder to workspcace
 workspace.appendChild(menuFolder)
+
+//hide all f1 element for the first time
+const folderItemsF1 = [...$$('.menu-folder > .menu-folder__item > .menu-folder__item')]
+folderItemsF1.forEach(item => item.hidden = true)
 
 // ================= handle menu folder action =================
 //get all file in tree and handle on click
