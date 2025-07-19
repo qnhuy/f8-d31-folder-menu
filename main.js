@@ -193,12 +193,31 @@ const menuFolder = document.createElement('div')
 menuFolder.className = 'menu-folder'
 const workspace = $('.workspace')
 
-//get extension part of file
-function getFileExtension(fileName) {
-    const lastDotIndex = fileName.lastIndexOf('.')
-    if (lastDotIndex < 0) return ''
-    return fileName.slice(lastDotIndex)
+//render menu folder
+function renderMenuFolder(tree, parentElement, level) {
+    for (node of tree) {
+        const childElement = document.createElement('div')
+        childElement.className = `menu-folder__item`
+
+        //hide all items having level >= 1
+        if (level >= 1) {
+            childElement.hidden = true
+        }
+
+        childElement.innerHTML = `
+            <div class="menu-folder__info">
+                ${getFileIcon(node.name)}
+                <p class="menu-folder__name">${node.name}</p>
+                ${getFolderDropDown(node.type)}
+            </div>`
+
+        parentElement.appendChild(childElement)
+        if (node.child) {
+            renderMenuFolder(node.child, childElement, level + 1)
+        }
+    }
 }
+renderMenuFolder(tree, menuFolder, 0)
 
 //get icon class base on file name
 function getFileIcon(fileName) {
@@ -228,6 +247,13 @@ function getFileIcon(fileName) {
     return `<span class="menu-folder__icon ${iconClass}"></span>`
 }
 
+//get extension part of file
+function getFileExtension(fileName) {
+    const lastDotIndex = fileName.lastIndexOf('.')
+    if (lastDotIndex < 0) return ''
+    return fileName.slice(lastDotIndex)
+}
+
 //get drop down icon if file is a folder
 function getFolderDropDown(fileType) {
     if (fileType === 'folder') {
@@ -236,32 +262,6 @@ function getFolderDropDown(fileType) {
         return ''
     }
 }
-
-//render menu folder
-function renderMenuFolder(tree, parentElement, level) {
-    for (node of tree) {
-        const childElement = document.createElement('div')
-        childElement.className = `menu-folder__item`
-
-        //hide all items having level > 0
-        if (level > 0) {
-            childElement.hidden = true
-        }
-
-        childElement.innerHTML = `
-            <div class="menu-folder__info">
-                ${getFileIcon(node.name)}
-                <p class="menu-folder__name">${node.name}</p>
-                ${getFolderDropDown(node.type)}
-            </div>`
-
-        parentElement.appendChild(childElement)
-        if (node.child) {
-            renderMenuFolder(node.child, childElement, level + 1)
-        }
-    }
-}
-renderMenuFolder(tree, menuFolder, 0)
 
 //append menu folder to workspcace
 workspace.appendChild(menuFolder)
