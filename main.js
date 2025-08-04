@@ -334,8 +334,8 @@ const contextMenu = $('.context-menu')
 function handleFileContextMenu(e) {
     e.preventDefault()
     if (e.target.closest('.menu-folder__info')) {
-        handleMenuPosition(e)
         handleShowMenu(e)
+        handleMenuPosition(e)
         handleMenuOptions(e)
     }
 }
@@ -376,9 +376,11 @@ function handleMenuOptions(e) {
     input.type = 'text'
     input.className = 'rename-input'
 
+    //handle rename file
     renameBtn.onclick = () => handleRenameFile(fileInfo, fileName, input)
 
-    deleteBtn.onclick = () => fileItem.remove()
+    //handle delete file
+    deleteBtn.onclick = () => confirm(`Are you sure to delete ${fileItem.querySelector('.menu-folder__name').innerHTML}?`) ? fileItem.remove() : ''
 }
 
 //handle rename file

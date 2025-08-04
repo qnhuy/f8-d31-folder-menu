@@ -244,6 +244,7 @@ h6 {
     cursor: pointer;
     display: flex;
     align-items: center;
+    user-select: none;
 }
 
 .menu-folder__info:hover {
